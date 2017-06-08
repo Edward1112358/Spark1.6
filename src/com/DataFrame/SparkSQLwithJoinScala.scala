@@ -65,12 +65,12 @@ object SparkSQLwithJoinScala {
       sqlText += "'" + i + "',"
     }
     sqlText = sqlText.substring(0, sqlText.length - 1)
-    sqlText += ");"
-
+    sqlText += ")"
     val excellentNameAgeDF = sqlContext.sql(sqlText)
+
     val resultRDD = excellentNameAgeDF.rdd.map(
       x => (x.getAs("name").toString, Integer.valueOf(x.getAs("age").toString))
-    ).join(excellentNameAgeDF.rdd.map(
+    ).join(excellentScoresDF.rdd.map(
       x => (x.getAs("name").toString, Integer.valueOf(x.getAs("score").toString))
     ))
     val resultRowRdd = resultRDD.map(x=>Row(x._1, x._2._1, x._2._2))

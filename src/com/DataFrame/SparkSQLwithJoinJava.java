@@ -72,6 +72,7 @@ public class SparkSQLwithJoinJava {
         sqlText += ")";
 
         DataFrame execellentNameAgeDF = sqlContext.sql(sqlText);
+
         JavaPairRDD resultRDD = excellentScoresDF.javaRDD().mapToPair(new PairFunction<Row, String, Integer>() {
             private static final long serialVersionUID = 1L;
 

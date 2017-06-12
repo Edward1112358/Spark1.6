@@ -1,3 +1,5 @@
+package com.MoviesRecommond
+
 import org.apache.log4j.{Level, Logger}
 import org.apache.spark.sql.{DataFrame, SQLContext, SaveMode}
 import org.apache.spark.{SparkConf, SparkContext}
@@ -22,8 +24,8 @@ object MoviesDataStatistics {
     val conf = new SparkConf().setAppName("MovieRecommondNew")
     val sc = new SparkContext(conf)
     val sqlContext = new SQLContext(sc)
-    import sqlContext.implicits._
     import org.apache.spark.sql.functions._
+    import sqlContext.implicits._
 
     val rdd = sc.textFile("file:///home/aisinobi/tmpEdward/ratings.csv").map(line => line.split(",")).map(line =>
       Ratings(line(0).toInt, line(1).toInt, line(2).toDouble))

@@ -1,4 +1,5 @@
-import org.apache.log4j.{Level, Logger}
+package com.MoviesRecommond
+
 import org.apache.spark.mllib.recommendation.{ALS, Rating}
 import org.apache.spark.{SparkConf, SparkContext}
 
